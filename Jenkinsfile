@@ -1,3 +1,5 @@
+@Library('github.com/releaseworks/jenkinslib') _
+
 pipeline {
   environment {
     registry = '8if8troin6i4rv2p/capstone-v3'
