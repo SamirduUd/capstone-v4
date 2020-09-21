@@ -3,7 +3,7 @@ pipeline {
     registry = '8if8troin6i4rv2p/capstone-v3'
     dockerCredential = 'dockerhub-user'
     dockerImage = ''
-    awsCredentials = 'aws-key'
+    //awsCredentials = 'aws-key'
   }
 
   agent any
@@ -48,11 +48,9 @@ pipeline {
 */
     stage('Create AWS network') {
       steps {
-        setAccountAlias 'aws-key'
-        sh '''aws cloudformation create-stack \\
-     --stack-name CreateNetwrok \\
-     --template-body network.yml
-     --parameters network-params.json'''
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        AWS("s3 ls")
+        }
       }
     }
 
