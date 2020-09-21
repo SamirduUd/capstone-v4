@@ -59,7 +59,7 @@ pipeline {
     stage('Create EC2 Machines') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-        AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateHosts --template-body file://servers.yml --parameters file://server-params.json --capabilities CAPABILITY_NAMED_IAM")
+        AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateHosts --template-body file://servers.yml --parameters file://servers-params.json --capabilities CAPABILITY_NAMED_IAM")
         }
       }
     }
