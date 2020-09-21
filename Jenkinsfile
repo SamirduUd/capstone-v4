@@ -63,7 +63,7 @@ pipeline {
     stage('Create Green EC2 Machines') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-        AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateGreenHosts --template-body file://green-servers --parameters file://green-servers-params.json --capabilities CAPABILITY_NAMED_IAM")
+        AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateGreenHosts --template-body file://green-servers.yml --parameters file://green-servers-params.json --capabilities CAPABILITY_NAMED_IAM")
         }
       }
     }
