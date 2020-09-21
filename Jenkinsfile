@@ -44,11 +44,10 @@ pipeline {
 
     stage('Create App network in AWS') {
       steps {
-        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']])
-         {
+        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]){
         //AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateNetwork --template-body file://network.yml --parameters file://network-params.json --capabilities CAPABILITY_NAMED_IAM")
         sh "ls"
-        }
+        //}
       }
     }
 
@@ -58,7 +57,7 @@ pipeline {
          {
         //AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateBlueHosts --template-body file://blue-servers.yml --parameters file://blue-servers-params.json --capabilities CAPABILITY_NAMED_IAM")
         sh "ls"
-        }
+        //}
       }
     }
 
