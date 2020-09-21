@@ -1,0 +1,16 @@
+[ {
+  "ParameterKey": "EnvironmentName",
+  "ParameterValue": "CapstoneProject"
+},
+
+{
+  "ParameterKey": "AMI", 
+  "ParameterValue": "ami-003634241a8fcdec0"  
+},
+
+{
+  "ParameterKey": "InstanceType",
+  "ParameterValue": "t3.small"  
+}
+  
+]

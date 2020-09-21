@@ -47,11 +47,19 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-*/
+
     stage('Create AWS network') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
         AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateNetwork --template-body file://network.yml --parameters file://network-params.json --capabilities CAPABILITY_NAMED_IAM")
+        }
+      }
+    }
+*/
+    stage('Create EC2 Machines') {
+      steps {
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateHosts --template-body file://servers.yml --parameters file://server-params.json --capabilities CAPABILITY_NAMED_IAM")
         }
       }
     }
