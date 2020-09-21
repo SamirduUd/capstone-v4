@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Cloning Capstone Project from Github') {
             steps {
-                git 'https://github.com/SamirduUd/capstone-v3.git'
+                git 'https://github.com/SamirduUd/capstone-v4.git'
             }
         }
 
