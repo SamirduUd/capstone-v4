@@ -53,7 +53,22 @@ pipeline {
     stage('Create Blue EC2 Machines') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-        AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateHosts --template-body file://blue-servers --parameters file://blue-servers-params.json --capabilities CAPABILITY_NAMED_IAM")
+        AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateBlueHosts --template-body file://blue-servers --parameters file://blue-servers-params.json --capabilities CAPABILITY_NAMED_IAM")
+        }
+      }
+    }
+
+    stage('Create Green EC2 Machines') {
+      steps {
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateGreenHosts --template-body file://Green-servers --parameters file://Green-servers-params.json --capabilities CAPABILITY_NAMED_IAM")
+        }
+      }
+    }
+
+    stage('Deploy App on Blue') {
+      steps {
+        sh "ls"
         }
       }
     }
