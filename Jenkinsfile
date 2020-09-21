@@ -1,4 +1,11 @@
 pipeline {
+  environment {
+    registry = '8if8troin6i4rv2p/capstone-v3'
+    dockerCredential = 'dockerhub-user'
+    dockerImage = ''
+    aws-key = 'aws-key'
+  }
+  
   agent any
   stages {
     stage('Cloning Capstone Project from Github') {
@@ -6,7 +13,7 @@ pipeline {
         git 'https://github.com/SamirduUd/capstone-v4.git'
       }
     }
-
+/*
     stage('Lint HTML') {
       steps {
         sh 'tidy -q -e index.html'
@@ -38,7 +45,7 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-
+*/
     stage('Create AWS network') {
       steps {
         setAccountAlias 'aws-key'
@@ -49,10 +56,5 @@ pipeline {
       }
     }
 
-  }
-  environment {
-    registry = '8if8troin6i4rv2p/capstone-v3'
-    dockerCredential = 'dockerhub-user'
-    dockerImage = ''
   }
 }
