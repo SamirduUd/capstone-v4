@@ -59,8 +59,7 @@ Resources:
              - "apt-get install apache2 -y \n"
              - "systemctl start apache2.service \n"
              - "cd /var/www/html \n "
-             - "aws s3 cp s3://udagramproject-samir/myUdagram.zip . \n"
-             - "unzip -o myUdagram.zip \n"
+             - "aws s3 cp s3://myudacitys3/index.html . \n"
       ImageId: !Ref AMI
       InstanceType: !Ref InstanceType 
       BlockDeviceMappings: 
