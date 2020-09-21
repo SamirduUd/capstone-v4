@@ -27,9 +27,9 @@ pipeline {
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
-
       }
     }
+    
 
     stage('Push Docker Image') {
       steps {
@@ -41,8 +41,6 @@ pipeline {
 
       }
     }
-
-    
 
     stage('Create AWS network') {
       steps {
@@ -67,11 +65,13 @@ pipeline {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
         AWS("--region=us-east-2 cloudformation delete-stack --stack-name CreateNetwork")
-      }*/
+      }
+      }
+*/
       steps {
           withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
           
-          AWS("--region=us-east-2 cloudformation delete-stack --stack-name CreateNetwork")
+          //AWS("--region=us-east-2 cloudformation delete-stack --stack-name CreateNetwork")
 
           AWS("--region=us-east-2 cloudformation delete-stack --stack-name CreateHosts")
           }
@@ -79,4 +79,3 @@ pipeline {
       }
     }
   }
-}
