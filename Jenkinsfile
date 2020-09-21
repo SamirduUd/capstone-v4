@@ -15,7 +15,7 @@ pipeline {
         git 'https://github.com/SamirduUd/capstone-v4.git'
       }
     }
-/*
+
     stage('Lint HTML') {
       steps {
         sh 'tidy -q -e index.html'
@@ -49,7 +49,7 @@ pipeline {
         }
       }
     }
-*/
+
     stage('Create EC2 Machines') {
       steps {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
@@ -58,24 +58,10 @@ pipeline {
       }
     }
 
-    stage('Cleaning up') {
-/*      steps {
+   stage('Cleaning up') {
+      steps {
         sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-      steps {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-        AWS("--region=us-east-2 cloudformation delete-stack --stack-name CreateNetwork")
-      }
-      }
-*/
-      steps {
-          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-          
-          //AWS("--region=us-east-2 cloudformation delete-stack --stack-name CreateNetwork")
-
-          AWS("--region=us-east-2 cloudformation delete-stack --stack-name CreateHosts")
-          }
-        }
       }
     }
   }
+}
