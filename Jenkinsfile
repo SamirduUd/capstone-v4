@@ -13,7 +13,7 @@ pipeline {
                 git 'https://github.com/SamirduUd/capstone-v4.git'
             }
         }
-
+/*
         stage('Lint HTML') {
 			steps {
 				sh 'tidy -q -e index.html'
@@ -43,6 +43,7 @@ pipeline {
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
+        */
     }
 }
 
