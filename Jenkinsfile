@@ -69,7 +69,6 @@ pipeline {
     stage('Deploy App on Blue') {
       steps {
         sh "ls"
-        }
       }
     }
   }
