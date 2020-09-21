@@ -41,7 +41,7 @@ pipeline {
 
     stage('Create AWS network') {
       steps {
-        setAccountAlias 'aws-user'
+        setAccountAlias 'aws-key'
         sh '''aws cloudformation create-stack \\
      --stack-name CreateNetwrok \\
      --template-body network.yml
