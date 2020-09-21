@@ -7,7 +7,7 @@ Parameters:
 
   AMI:
       Type: String
-      Default: "ami-003634241a8fcdec0" #Ubuntu Server 18.04 LTS (HVM), SSD Volume Type
+      Default: "ami-0603cbe34fd08cb81" #Amazon Linux 2 AMI (HVM), SSD Volume Type
 
   InstanceType:
     Type: String
