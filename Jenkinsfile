@@ -53,8 +53,7 @@ pipeline {
 
     stage('Create Blue EC2 Machines') {
       steps {
-        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']])
-         {
+        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
         //AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateBlueHosts --template-body file://blue-servers.yml --parameters file://blue-servers-params.json --capabilities CAPABILITY_NAMED_IAM")
         sh "ls"
         //}
@@ -63,8 +62,7 @@ pipeline {
 
     stage('Create Green EC2 Machines') {
       steps {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) 
-        {
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
         AWS("--region=us-east-2 cloudformation create-stack --stack-name CreateGreenHosts --template-body file://green-servers --parameters file://green-servers-params.json --capabilities CAPABILITY_NAMED_IAM")
         }
       }
