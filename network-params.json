@@ -2,7 +2,7 @@
   {
     "ParameterKey": "EnvironmentName",
     "ParameterValue": "CapstoneProject"
-  },
+  },                   
   {
     "ParameterKey": "VPCRange",
     "ParameterValue": "192.168.0.0/16"
