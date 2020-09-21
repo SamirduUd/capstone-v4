@@ -3,9 +3,9 @@ pipeline {
     registry = '8if8troin6i4rv2p/capstone-v3'
     dockerCredential = 'dockerhub-user'
     dockerImage = ''
-    aws-key = 'aws-key'
+    awsCredentials = 'aws-key'
   }
-  
+
   agent any
   stages {
     stage('Cloning Capstone Project from Github') {
